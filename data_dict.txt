@@ -1,0 +1,11 @@
+title         (string): name of anime
+airing_status (string): currently airing or not
+num_episodes     (int): number of episodes
+start_date      (date): starting date of anime
+end_date        (date): ending date of anime
+watched_episodes (int): number of seen episodes
+user_rating   (double): what the user rated the anime
+user_status   (string): watching, plan to watch, watched
+synopsis      (string): synopsis of the plot
+genres        (string): list of genres of the show
+studios       (string): list of studios of the show
