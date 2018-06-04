@@ -7,7 +7,7 @@ def data_exists(key):
     cursor = db_connection.cursor()
 
     # format to query data
-    query = 'SELECT * from animu WHERE name = "' + str(key) + '"'
+    query = 'SELECT * from animu WHERE title = "' + str(key) + '"'
     cursor.execute(query)
     cursor.fetchall()
 
@@ -29,8 +29,8 @@ def add_data(data):
 
     # format to insert data
     data_format = ("INSERT INTO animu "
-                   "(name, rating, episodes, status, start_airing, finish_airing, watched) "
-                   "VALUES (%s, %s, %s, %s, %s, %s, %s)")
+                   "(title, airing_status, num_episodes, start_date, end_date, synopsis, genres, studios) "
+                   "VALUES (%s, %s, %s, %s, %s, %s, %s, %s)")
 
     # insert data
     cursor.execute(data_format, data)

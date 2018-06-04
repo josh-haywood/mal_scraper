@@ -5,11 +5,13 @@ from datetime import datetime
 def scrape_data(base_url, i_start, i_end):
     # data values to be searched for
     title = None
-    rating = None
     num_eps = None
     status = None
     start_date = None
     end_date = None
+    genres = None
+    studios = None
+    synopsis = None
     results = []
 
     # iterate over all posible url's on MAL
@@ -27,8 +29,8 @@ def scrape_data(base_url, i_start, i_end):
         # fetch anime title
         title = soup.find('span', attrs={'itemprop':'name'}).text.strip()
 
-        # fetch anime rating
-        rating = soup.find('div', attrs={'data-title':'score'}).text.strip()
+        # fetch the synopsis
+        synopsis = soup.find('span', attrs={'itemprop':'description'}).text.strip()
 
         # getting airing data, number of episodes, and airing status is non-trivial
         # iterate over all posible div-span combos and look for certain strings
@@ -47,6 +49,12 @@ def scrape_data(base_url, i_start, i_end):
             # case: Status
             elif "Status:" in content:
                 status = content.replace("\n","")[7:].strip()
+            # case: Genres
+            elif "Genres:" in content:
+                genres = content.replace("\n","")[7:].replace(" ","").replace(",",", ").strip()
+            # case: Studios
+            elif "Studios:" in content:
+                studios = content.replace("\n","")[8:].replace(" ","").replace(",",", ").strip()
             # case: Aired
             elif "Aired:" in content:
                 # split start and ending dates
@@ -64,6 +72,6 @@ def scrape_data(base_url, i_start, i_end):
                 # get start date
                 start_date_dt = datetime.strptime(dates[0].strip(), "%b %d, %Y")
                 start_date = str(start_date_dt).split(" ")[0]
-        result_tup = (title, rating, num_eps, status, start_date, end_date, 0)
+        result_tup = (title, status, num_eps, start_date, end_date, synopsis, genres, studios)
         results.append(result_tup)
     return results
