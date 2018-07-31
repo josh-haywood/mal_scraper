@@ -9,3 +9,6 @@ user_status   (string): watching, plan to watch, watched
 synopsis      (string): synopsis of the plot
 genres        (string): list of genres of the show
 studios       (string): list of studios of the show
+
+site vals: 8
+user vals: 3
