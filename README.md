@@ -1,0 +1,1 @@
+This set of scripts were intended to fetch information of various anime off of myanimelist.net to store in a local database for personal use. The scripts look for certain HTML tags to find the necessary information. This project, however, has since been dropped as a suitable replacement was found.
